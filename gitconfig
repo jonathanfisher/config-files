@@ -1,0 +1,6 @@
+[color]
+	ui = auto
+[user]
+	name = Jonathan Fisher
+[push]
+	default = upstream
