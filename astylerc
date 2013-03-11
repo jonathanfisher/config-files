@@ -1,0 +1,153 @@
+# Use K&R formatting style
+style=k&r
+
+# Indent class and struct blocks so that the blocks 'public', 'private' and
+# 'protected' are indented. This option is effective in C++ files only
+indent-classes
+
+# Do not maintain a backup of the file.
+suffix=none
+
+# Indent 'switch' blocks so that the 'case X:' statements are indented with 
+# the switch block. The entire case block is indented.
+indent-switches
+
+# Indent C++ namespaces (this option has no effect on other file types)
+# Add extra indentation to namespace blocks.
+indent-namespaces
+
+# Indent multi line preprocessor definitions ending with a backslash
+indent-preprocessor
+
+# Indent C++ comments beginning in column one. 
+# For example
+# 
+# void Foo()\n"
+# {
+# // comment
+#     if (isFoo)
+#         bar();
+# }
+# 
+# becomes:
+# 
+# void Foo()\n"
+# {
+#     // comment
+#     if (isFoo)
+#         bar();
+# }
+# 
+indent-col1-comments
+
+# Pad empty lines around header blocks (e.g. 'if', 'for', 'while'...).
+# 
+# isFoo = true;
+# if (isFoo) {
+#     bar();
+# } else {
+#     anotherBar();
+# }
+# isBar = false;
+# 
+# becomes:
+# 
+# isFoo = true;
+# 
+# if (isFoo) {
+#     bar();
+# } else {
+#     anotherBar();
+# }
+# 
+# isBar = false;
+# 
+break-blocks
+
+# Insert space padding around operators. Any end of line comments will remain
+# in the original column, if possible. Note that there is no option to unpad.
+# Once padded, they stay padded.
+#
+# if (foo==2)
+#     a=bar((b-c)*a,d--);
+#
+# becomes:
+#
+# if (foo == 2)
+#      a = bar((b - c) * a, d--);
+#
+pad-oper
+
+# Insert space padding after paren headers only (e.g. 'if', 'for', 'while'...).
+# Any end of line comments will remain in the original column, if possible.
+# This can be used with unpad-paren to remove unwanted spaces.
+# 
+# if(isFoo(a, b))
+#     bar(a, b);
+# 
+# becomes:
+# 
+# if (isFoo(a, b))
+#     bar(a, b);
+# 
+pad-header
+
+# Remove extra space padding around parenthesis on the inside and outside. Any
+# end of line comments will remain in the original column, if possible. This
+# option can be used in combination with the paren padding options pad‑paren,
+# pad‑paren‑out, pad‑paren‑in, and pad‑header above. Only padding that has not
+# been requested by other options will be removed.
+# 
+# For example, if a source has parens padded on both the inside and outside,
+# and you want inside only. You need to use unpad-paren to remove the outside
+# padding, and pad‑paren‑in to retain the inside padding. Using only
+# pad‑paren‑in would not remove the outside padding.
+# 
+# if ( isFoo( a, b ) )
+#     bar ( a, b );
+# 
+# becomes (with no padding option requested):
+# 
+# if(isFoo(a, b))
+#     bar(a, b);
+# 
+unpad-paren
+
+# Attach a pointer or reference operator (* or &) to either the variable type
+# (left) or variable name (right), or place it between the type and name
+# (middle). The spacing between the type and name will be preserved, if
+# possible. To format references separately use the following align-reference
+# option.
+# 
+# char *foo1;
+# char &foo2;
+# 
+# becomes (with align-pointer=type):
+# 
+# char* foo1;
+# char& foo2;
+# 
+# char* foo1;
+# char& foo2;
+# 
+# becomes (with align-pointer=middle):
+# 
+# char * foo1;
+# char & foo2;
+# 
+# char* foo1;
+# char& foo2;
+# 
+# becomes (with align-pointer=name):
+# 
+# char *foo1;
+# char &foo2;
+# 
+align-pointer=name
+
+# Indent with 4 spaces instead of tabs.
+indent=spaces=4
+
+# Linux line endings (LF).
+lineend=linux
+
