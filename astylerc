@@ -151,3 +151,5 @@ indent=spaces=4
 # Linux line endings (LF).
 lineend=linux
 
+# Display only file names that have been changed.
+formatted
