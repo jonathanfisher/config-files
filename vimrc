@@ -1,3 +1,4 @@
+" Author: Jonathan Fisher
 set nocompatible
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
@@ -29,9 +30,6 @@ set laststatus=2
 " Set the font.
 set gfn=Monospace\ 11
 
-" Set auto-change-directory.
-set autochdir
-
 " Don't use backups.
 set backup
 set backupdir=/tmp
@@ -43,6 +41,9 @@ set nocp
 " Set the current working directory.
 cd ~/Projects/
 
+" Set auto-change-directory.
+set autochdir
+
 " Set the color scheme.
 colorscheme default
 
@@ -53,15 +54,12 @@ set shiftwidth=4                " use indents of 4 spaces
 set expandtab                   " tabs are spaces, not tabs
 set tabstop=4                   " an indentation every four columns
 set softtabstop=4               " let backspace delete indent
-"set matchpairs+=<:>                " match, to be used with %
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
-"set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
+
 " Remove trailing whitespaces and ^M chars
 autocmd FileType c,cpp,java,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
 set list
-"set listchars=tab:,.,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
-"set listchars=tab:>\ ,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
 set listchars=tab:\ \ ,trail:.,extends:#,nbsp:. " Highlight problematic whitespace
 
 " With the following setting, Vim will search for the file named 'tags', starting
@@ -70,3 +68,22 @@ set listchars=tab:\ \ ,trail:.,extends:#,nbsp:. " Highlight problematic whitespa
 " the 'tags' file or reaches the root directory.
 set tags=./tags;
 
+" Wildmode
+set wildmode=longest,list,full
+set wildmenu
+
+" Map the <F9> key to "make"
+:map <f9> :make
+
+" Set the column marker at 80 characters.
+if exists("+colorcolumn")
+    set colorcolumn=81
+endif
+
+" CTRL-X is CUT
+vnoremap <C-X> "+x
+" CTRL-C is COPY
+vnoremap <C-C> "+y
+" CTRL-V is PASTE
+vnoremap <C-V> "+gP
+cmap <C-V> <C-R>+
