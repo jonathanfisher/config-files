@@ -12,13 +12,24 @@ alias getclip='xclip -selection clipboard -o'
 
 # Git commands
 alias gc='git commit -a -m'
+alias gco='git checkout'
 alias gs='git status'
 alias gd='git diff'
+alias gb='git branch'
+alias gm='git merge'
+
 
 # Shortcut for vim
 alias v='vim'
 
+# Shortcut to go to a specific directory
+alias scanner='cd ~/Projects/scannerv2'
+
+####################################
 # Create some useful commands.
+####################################
+
+# Try to extract a given file.
 extract() {
 	if [ -f $1 ] ; then
 		case $1 in

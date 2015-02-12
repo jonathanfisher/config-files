@@ -1,6 +1,30 @@
+#
+# This file is intended to be included by ~/.gitconfig.  This is done by adding
+# the lines:
+# [include]
+#	path = /path/to/gitconfig
+#
 [color]
-	ui = auto
+	ui = true
 [user]
 	name = Jonathan Fisher
 [push]
 	default = upstream
+
+[core]
+	editor = vim
+
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	dc = diff --cached
+	lg = log -p
+	pr = pull --rebase
+	gr = log --all --graph --decorate --oneline
+
+# Only push the branch we are tracking
+[push]
+	default = tracking
