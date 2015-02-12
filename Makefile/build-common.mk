@@ -17,5 +17,10 @@ STRIP   = $(CROSS_COMPILE)strip
 CP := cp
 
 # Generate dependencies by default.
-CFLAGS += -MMD
+CFLAGS   += -MMD
+CXXFLAGS += -MMD
 
+# According to the GNU Make manual, we should define the shell variable.
+SHELL = /bin/sh
+
+INSTALL = install
