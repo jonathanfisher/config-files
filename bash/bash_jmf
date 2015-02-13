@@ -1,5 +1,18 @@
 #!/bin/sh
 
+c="$(dirname ${BASH_SOURCE[0]})"
+
+if [ -f "$c/colors.sh" ] ; then
+	. "$c/colors.sh"
+fi
+
+# Set format for prompt
+#PS1='${TTLBAR}\u:\w${text}$(__git_ps1) $ '
+TITLEBAR='\[\e]0;\u: \w\a\]'
+GITPS1='$(__git_ps1)'
+PS1='\u:\w'"\[${Blue}\]$GITPS1\[${Color_Off}\]"
+PS1="$TITLEBAR$PS1 $ "
+
 # Used for cross-compiling for Atmel parts.
 alias amake='make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi-'
 
@@ -35,6 +48,7 @@ extract() {
 		case $1 in
 			*.tar.bz2)	tar xvjf $1	;;
 			*.tar.gz)	tar xvzf $1	;;
+			*.tar.xz)	tar xvf $1	;;
 			*.bz2)		bunzip2 $1	;;
 			*.rar)		unrar x $1	;;
 			*.gz)		gunzip $1	;;
