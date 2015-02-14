@@ -1,15 +1,20 @@
-#!/bin/sh
-
 c="$(dirname ${BASH_SOURCE[0]})"
+
+unamestr=$(uname)
 
 if [ -f "$c/colors.sh" ] ; then
 	. "$c/colors.sh"
 fi
 
 # Set format for prompt
-#PS1='${TTLBAR}\u:\w${text}$(__git_ps1) $ '
+# I don't have git completion working on the mac just yet.
 TITLEBAR='\[\e]0;\u: \w\a\]'
-GITPS1='$(__git_ps1)'
+case $(uname) in
+    Linux)
+        GITPS1='$(__git_ps1)' ;;
+    *)
+        GITPS1='' ;;
+esac
 PS1='\u:\w'"\[${Blue}\]$GITPS1\[${Color_Off}\]"
 PS1="$TITLEBAR$PS1 $ "
 
