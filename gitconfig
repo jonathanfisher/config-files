@@ -9,7 +9,7 @@
 [user]
 	name = Jonathan Fisher
 [push]
-	default = upstream
+	default = matching
 
 [core]
 	editor = vim

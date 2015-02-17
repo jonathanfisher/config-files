@@ -9,6 +9,16 @@ set number
 " Ignore case
 set ignorecase
 
+" Ignore some file extensions
+if exists("g:ctrl_user_command")
+	unlet g:ctrlp_user_command
+endif
+set wildmenu   " Turn on command line completion
+set wildignore=*.dll,*.o,*.obj,*.bak,*.exe,*.pyc,*.jpg,*.png,*.gif,*.mp3
+set wildmode=list:longest
+
+set lazyredraw " Don't redraw while running macros
+
 " Incremental searches, with highlighting.
 set incsearch
 set hlsearch
@@ -50,10 +60,10 @@ colorscheme default
 let g:indent_guides_enable_on_vim_startup=0
 set nowrap                      " wrap long lines
 set autoindent                  " indent at the same level of the previous line
-set shiftwidth=4                " use indents of 4 spaces
-set expandtab                   " tabs are spaces, not tabs
-set tabstop=4                   " an indentation every four columns
-set softtabstop=4               " let backspace delete indent
+set noexpandtab                 " Use tabs, not spaces
+set shiftwidth=8                " use indents of 4 spaces
+set tabstop=8                   " an indentation every four columns
+set softtabstop=8               " let backspace delete indent
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
 " Remove trailing whitespaces and ^M chars
@@ -75,15 +85,10 @@ set wildmenu
 " Map the <F9> key to "make"
 :map <f9> :make
 
+set t_Co=256
+
 " Set the column marker at 80 characters.
 if exists("+colorcolumn")
     set colorcolumn=81
+    highlight ColorColumn ctermbg=black
 endif
-
-" CTRL-X is CUT
-vnoremap <C-X> "+x
-" CTRL-C is COPY
-vnoremap <C-C> "+y
-" CTRL-V is PASTE
-vnoremap <C-V> "+gP
-cmap <C-V> <C-R>+
