@@ -1,6 +1,6 @@
+# This is the directory of the current file.  This is important because this
+# file is probably included from the main ~/.bashrc or ~/.bash_profile files.
 c="$(dirname ${BASH_SOURCE[0]})"
-
-unamestr=$(uname)
 
 if [ -f "$c/colors.sh" ] ; then
 	. "$c/colors.sh"
