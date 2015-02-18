@@ -114,5 +114,11 @@ set t_Co=256
 " Set the column marker at 80 characters.
 if exists("+colorcolumn")
     set colorcolumn=81
-    highlight ColorColumn ctermbg=black
 endif
+
+if &background == "light"
+	highlight ColorColumn ctermbg=lightgrey
+else
+	highlight ColorColumn ctermbg=black
+endif
+
