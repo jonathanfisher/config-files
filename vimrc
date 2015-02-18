@@ -1,4 +1,6 @@
 " Author: Jonathan Fisher
+let g:vimrc_author='Jonathan Fisher'
+
 set nocompatible
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
@@ -33,6 +35,28 @@ set cul
 set noerrorbells
 set novisualbell
 set t_vb=
+
+
+" Set folding
+set foldmethod=indent
+" Map the space bar to toggling fold level
+nnoremap <Space> za
+
+" When creating a new .c file, add a header.
+"autocmd bufnewfile *.c so /home/jfisher/Projects/config-files/c_header.txt
+"autocmd bufnewfile *.c exe "1," . 7 . "g/File Name:.*/s//File Name: " .expand("%")
+"autocmd bufnewfile *.c exe "1," . 7 . "g/Created By:.*/s//Created By: " . g:vimrc_author
+"autocmd bufnewfile *.c exe "1," . 7 . "g/Creation Date:.*/s//Creation Date: " .strftime("%m-%d-%Y")
+"autocmd Bufwritepre,filewritepre *.c execute "normal ma"
+"autocmd Bufwritepre,filewritepre *.c exe "1," . 7 . "g/Last Modified:.*/s/Last Modified:.*/Last Modified: " . strftime("%c")
+"autocmd bufwritepost,filewritepost *.c execute "normal `a"
+
+" When creating a new header file, wrap it with ifdefs
+autocmd bufnewfile *.h
+	\ exe "normal i#ifndef __" . toupper(expand("%:t:r")) . "_H__\n" .
+	\ "#define __" .toupper(expand("%:t:r")) . "_H__\n\n" .
+	\ "#endif\n"  |
+	\ execute "normal 3gg"
 
 " Use a statusline.
 set laststatus=2
