@@ -122,3 +122,5 @@ else
 	highlight ColorColumn ctermbg=black
 endif
 
+highlight Search ctermbg=darkblue ctermfg=white
+
