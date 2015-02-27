@@ -8,6 +8,12 @@ behave mswin
 " Line numbers
 set number
 
+" Set the color scheme.
+colorscheme default
+
+" Use 256 colors
+set t_Co=256
+
 " Ignore case
 set ignorecase
 
@@ -28,14 +34,10 @@ set hlsearch
 " When I close the tab, remove the buffer.
 set nohidden
 
-" Highlight the whole line.
-set cul
-
 " Turn off annoying error bells.
 set noerrorbells
 set novisualbell
 set t_vb=
-
 
 " Set folding
 set foldmethod=indent
@@ -78,9 +80,6 @@ cd ~/Projects/
 " Set auto-change-directory.
 set autochdir
 
-" Set the color scheme.
-colorscheme default
-
 let g:indent_guides_enable_on_vim_startup=0
 set nowrap                      " wrap long lines
 set autoindent                  " indent at the same level of the previous line
@@ -109,8 +108,6 @@ set wildmenu
 " Map the <F9> key to "make"
 :map <f9> :make
 
-set t_Co=256
-
 " Set the column marker at 80 characters.
 if exists("+colorcolumn")
     set colorcolumn=81
@@ -123,4 +120,10 @@ else
 endif
 
 highlight Search ctermbg=darkblue ctermfg=white
+
+" Highlight the whole line.
+set cursorline
+highlight CursorLine ctermbg=NONE ctermfg=NONE cterm=bold
+highlight CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
+noremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
