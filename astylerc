@@ -1,5 +1,5 @@
-# Use K&R formatting style
-style=k&r
+# Base formatting style
+style=allman
 
 # Indent class and struct blocks so that the blocks 'public', 'private' and
 # 'protected' are indented. This option is effective in C++ files only
@@ -145,11 +145,20 @@ unpad-paren
 # 
 align-pointer=name
 
-# Indent with 4 spaces instead of tabs.
-indent=spaces=4
+# Indentation
+indent=tab=8
 
 # Linux line endings (LF).
 lineend=linux
 
 # Display only file names that have been changed.
 formatted
+
+# break up a line from
+# } else {
+# to each on its own line
+break-closing-brackets
+
+# Always use brackets -- no single line statements of conditionals.
+add-brackets
+
