@@ -127,3 +127,7 @@ highlight CursorLine ctermbg=NONE ctermfg=NONE cterm=bold
 highlight CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
 noremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
+" Local replacing of variable names
+nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
+" Global replace
+nnoremap gR gD:%s/<C-R>///gc<left><left><left>
