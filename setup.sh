@@ -4,7 +4,7 @@
 # on which it is run.
 
 CURDIR="$PWD"
-CONFIG_DIR=$( cd $(dirname $0) ; pwd -P )
+CONFIG_DIR="$( cd $(dirname $0) ; pwd -P )"
 
 BASHRC_SRC="$CONFIG_DIR/bash/bash_jmf.sh"
 VIMDIR_SRC="$CONFIG_DIR/vim/"
@@ -17,6 +17,13 @@ VIMRC="$HOME/.vimrc"
 BASHRC="$HOME/.bashrc"
 ASTYLERC="$HOME/.astylerc"
 GITCONFIG="$HOME/.gitconfig"
+
+case $(uname) in
+	Darwin)
+		echo "OS X detected"
+		BASHRC="$HOME/.bash_profile"
+		;;
+esac
 
 # Bash
 if [ -e "$BASHRC" ]; then
