@@ -39,9 +39,7 @@ alias gm='git merge'
 
 # Shortcut for vim
 alias v='vim'
-
-# Shortcut to go to a specific directory
-alias scanner='cd ~/Projects/scannerv2'
+alias git='hub'
 
 ####################################
 # Create some useful commands.
