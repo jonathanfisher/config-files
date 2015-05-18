@@ -6,8 +6,10 @@
 #
 [color]
 	ui = true
+
 [user]
 	name = Jonathan Fisher
+
 [push]
 	default = matching
 

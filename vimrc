@@ -83,10 +83,10 @@ set autochdir
 let g:indent_guides_enable_on_vim_startup=0
 set nowrap                      " wrap long lines
 set autoindent                  " indent at the same level of the previous line
-set noexpandtab                 " Use tabs, not spaces
-set shiftwidth=8                " use indents of 4 spaces
-set tabstop=8                   " an indentation every four columns
-set softtabstop=8               " let backspace delete indent
+set expandtab                   " Use spaces, not tabs
+set shiftwidth=4                " use indents of 4 spaces
+set tabstop=4                   " an indentation every four columns
+set softtabstop=4               " let backspace delete indent
 set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
 
 " Remove trailing whitespaces and ^M chars
