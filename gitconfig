@@ -10,9 +10,6 @@
 [user]
 	name = Jonathan Fisher
 
-[push]
-	default = matching
-
 [core]
 	editor = vim
 
@@ -27,6 +24,16 @@
 	pr = pull --rebase
 	gr = log --all --graph --decorate --oneline
 	lbb = log --pretty=format:\"%ad %H %s\" --date=short --first-parent --reverse
+
+[merge]
+    tool = vimdiff
+    conflictstyle = diff3
+
+[mergetool]
+    prompt = false
+
+[pull]
+    rebase = true
 
 # Only push the branch we are tracking
 [push]
