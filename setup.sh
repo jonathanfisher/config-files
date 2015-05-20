@@ -54,7 +54,12 @@ if [ -e "$VIMRC" ]; then
 else
 	echo "source $VIMRC_SRC" >> "$VIMRC"
 fi
-TMP=$(rsync -av $VIMDIR_SRC $VIMDIR)
+
+if [ -e "$VIMDIR" ]; then
+    TMP=$(rsync -av $VIMDIR_SRC $VIMDIR)
+else
+    TMP=$(ln -s VIMDIR_SRC $VIMDIR)
+fi
 
 # Git
 TMP="$(git config --global --get-all include.path)"
