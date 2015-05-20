@@ -5,13 +5,22 @@
 #	path = /path/to/gitconfig
 #
 [color]
-	ui = true
+	ui = on
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
 
 [user]
 	name = Jonathan Fisher
 
 [core]
 	editor = vim
+    autocrlf = input
+
+[branch]
+    autosetupmerge = false
+    autosetuprebase = always
 
 [alias]
 	st = status
@@ -33,12 +42,18 @@
     tool = vimdiff
     conflictstyle = diff3
 
+[hub]
+    protocol = git
+
+[rerere]
+    enabled = 1
+
 [mergetool]
     prompt = false
+    keepBackup = false
 
 [pull]
     rebase = true
 
-# Only push the branch we are tracking
 [push]
 	default = tracking
