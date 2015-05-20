@@ -23,7 +23,7 @@
 	lg = log -p
 	pr = pull --rebase
 	gr = log --all --graph --decorate --oneline
-	lbb = log --pretty=format:\"%ad %H %s\" --date=short --first-parent --reverse
+	lbb = "log --pretty=format:'# %ad %H %s' --date=short --first-parent --reverse"
 
 [merge]
     tool = vimdiff
