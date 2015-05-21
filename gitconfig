@@ -37,6 +37,8 @@
     mt = mergetool
     prb = pull --rebase
     rb = rebase
+    lh = "log --pretty=format:'%H' -n 1"
+    hash = "log --pretty=format:'%H'"
 
 [merge]
     tool = vimdiff
