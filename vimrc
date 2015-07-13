@@ -80,6 +80,9 @@ cd ~/Projects/
 " Set auto-change-directory.
 set autochdir
 
+" Automatically reload a file that's changed on disk.
+set autoread
+
 let g:indent_guides_enable_on_vim_startup=0
 set nowrap                      " wrap long lines
 set autoindent                  " indent at the same level of the previous line

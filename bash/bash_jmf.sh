@@ -24,6 +24,9 @@ alias amake='make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi-'
 # Avoid clobbering files
 alias mkdir='mkdir -p'
 
+# Colors for ls
+alias ls='ls --color'
+
 # JMF: Set aliases for clipboard access.
 alias setclip='xclip -selection c'
 alias getclip='xclip -selection clipboard -o'
@@ -36,6 +39,8 @@ alias gd='git diff'
 alias gb='git branch'
 alias gm='git merge'
 
+# Alias for Jeeves
+alias jeeves='ssh jfisher@jeeves.local'
 
 # Shortcut for vim
 alias v='vim'
@@ -114,5 +119,15 @@ pr() {
     fi
 
     ssh root@"$1".local
+}
+
+prupd() {
+    if [ -z "$1" ]; then
+        echo "Must supply a printer name or IP"
+        return 1;
+    fi
+
+    scp "tmp/deploy/images/bessemer-mb-p4/update.fw" "root@$1:/mnt/"
+    rmssh "$1"
 }
 

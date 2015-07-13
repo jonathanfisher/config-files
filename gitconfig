@@ -58,4 +58,4 @@
     rebase = true
 
 [push]
-	default = tracking
+	default = current
