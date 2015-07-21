@@ -11,12 +11,14 @@ VIMDIR_SRC="$CONFIG_DIR/vim/"
 VIMRC_SRC="$CONFIG_DIR/vimrc"
 GITCONFIG_SRC="$CONFIG_DIR/gitconfig"
 ASTYLERC_SRC="$CONFIG_DIR/astylerc"
+TMUX_SRC="$CONFIG_DIR/tmux.conf"
 
 VIMDIR="$HOME/.vim"
 VIMRC="$HOME/.vimrc"
 BASHRC="$HOME/.bashrc"
 ASTYLERC="$HOME/.astylerc"
 GITCONFIG="$HOME/.gitconfig"
+TMUX="$HOME/.tmux.conf"
 
 case $(uname) in
 	Darwin)
@@ -77,4 +79,16 @@ if [ ! -e "$ASTYLERC" ]; then
 	TMP=$(ln -s $ASTYLERC_SRC $ASTYLERC)
 else
 	echo "$(basename $ASTYLERC)\tAlready exists"
+fi
+
+# TMux
+if [ ! -e "$TMUX" ]; then
+    echo "source ${TMUX_SRC}" >> $TMUX
+else
+	grep -q "source $TMUX_SRC" $TMUX
+	if [ $? -eq 0 ]; then
+        echo "${TMUX} already up to date."
+    else
+        echo "source ${TMUX_SRC}" >> $TMUX
+    fi
 fi

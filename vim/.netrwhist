@@ -1,3 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/jfisher/Documents/ScannerDevKit/GPL32902/openplatform/sdk/os/linux-3.4.12/block'
+let g:netrw_dirhist_2='/home/jfisher/code/poky/meta-formlabs/recipes-kernel/rtkb-module'
+let g:netrw_dirhist_3='/home/jfisher/code/poky-linutronix/meta-linutronix/recipes-boot'
+let g:netrw_dirhist_4='/home/jfisher/code/poky/meta-linutronix/recipes-boot/kernel-initrd'
+let g:netrw_dirhist_5='/home/jfisher/code/poky/meta/recipes-core/base-files/base-files'
+let g:netrw_dirhist_6='/home/jfisher/code/poky/meta/recipes-devtools/run-postinsts/run-postinsts'
