@@ -36,6 +36,9 @@
     rbc = rebase --continue
     mt = mergetool
     prb = pull --rebase
+    rhh = reset --hard HEAD
+    sui = submodule update --init --recursive
+    ss = submodule sync
     rb = rebase
     lh = "log --pretty=format:'%H' -n 1"
     hash = "log --pretty=format:'%H'"
