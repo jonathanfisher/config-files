@@ -127,7 +127,8 @@ prupd() {
         return 1;
     fi
 
-    scp "tmp/deploy/images/bessemer-mb-p4/update.fw" "root@$1:/mnt/"
-    rmssh "$1"
+    rmssh "$1" &> /dev/null
+    scp "tmp/deploy/images/bessemer-mb-p4/update.fw.tar.gz" "root@$1:/data/"
+    rmssh "$1" &> /dev/null
 }
 
