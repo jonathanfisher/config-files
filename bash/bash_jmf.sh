@@ -15,7 +15,7 @@ case $(uname) in
     *)
         GITPS1='' ;;
 esac
-PS1='\u:\w'"\[${Blue}\]$GITPS1\[${Color_Off}\]"
+PS1='\u@\h:\w'"\[${Blue}\]$GITPS1\[${Color_Off}\]"
 PS1="$TITLEBAR$PS1 $ "
 
 # Used for cross-compiling for Atmel parts.

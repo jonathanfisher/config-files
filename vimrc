@@ -75,7 +75,7 @@ set writebackup
 set nocp
 
 " Set the current working directory.
-cd ~/Projects/
+cd ~
 
 " Set auto-change-directory.
 set autochdir
