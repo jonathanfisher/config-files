@@ -15,6 +15,11 @@ case $(uname) in
     *)
         GITPS1='' ;;
 esac
+
+if [ -f /etc/arch-release ]; then
+    GITPS1=''
+fi
+
 PS1='\u@\h:\w'"\[${Blue}\]$GITPS1\[${Color_Off}\]"
 PS1="$TITLEBAR$PS1 $ "
 
