@@ -55,10 +55,7 @@ nnoremap <Space> za
 
 " When creating a new header file, wrap it with ifdefs
 autocmd bufnewfile *.h
-	\ exe "normal i#ifndef __" . toupper(expand("%:t:r")) . "_H__\n" .
-	\ "#define __" .toupper(expand("%:t:r")) . "_H__\n\n" .
-	\ "#endif\n"  |
-	\ execute "normal 3gg"
+	\ exe "normal i#pragma once\n" | execute "normal G"
 
 " Use a statusline.
 set laststatus=2
