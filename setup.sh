@@ -60,7 +60,7 @@ fi
 if [ -e "$VIMDIR" ]; then
     TMP=$(rsync -av $VIMDIR_SRC $VIMDIR)
 else
-    TMP=$(ln -s VIMDIR_SRC $VIMDIR)
+    TMP=$(ln -s $VIMDIR_SRC $VIMDIR)
 fi
 
 # Git
