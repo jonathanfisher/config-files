@@ -8,6 +8,9 @@ behave mswin
 " Line numbers
 set number
 
+" Load pathogen
+execute pathogen#infect()
+
 " Set the color scheme.
 colorscheme default
 
@@ -131,3 +134,4 @@ noremap <Leader>c :set cursorline! cursorcolumn!<CR>
 nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
 " Global replace
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
+

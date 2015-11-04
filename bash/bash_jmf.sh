@@ -26,6 +26,14 @@ PS1="$TITLEBAR$PS1 $ "
 # Used for cross-compiling for Atmel parts.
 alias amake='make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi-'
 
+# Set up go path
+export GOPATH=$HOME/code/go
+
+if [ ! -d "$GOPATH" ]; then
+    # Create the directory
+    mkdir -p $GOPATH
+fi
+
 # Avoid clobbering files
 alias mkdir='mkdir -p'
 
