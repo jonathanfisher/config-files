@@ -59,6 +59,11 @@ alias jeeves='ssh jfisher@jeeves.local'
 alias v='vim'
 alias git='hub'
 
+# Bring in completions for hub
+if [ -f "$c/hub.bash_completion.sh" ]; then
+    . "$c/hub.bash_completion.sh"
+fi
+
 ####################################
 # Create some useful commands.
 ####################################
