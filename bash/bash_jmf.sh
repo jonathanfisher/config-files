@@ -139,14 +139,11 @@ pr() {
     ssh root@"$1".local
 }
 
-prupd() {
+prs() {
     if [ -z "$1" ]; then
-        echo "Must supply a printer name or IP"
-        return 1;
+        echo "Must supply a printer name"
+        return 1
     fi
 
-    rmssh "$1" &> /dev/null
-    scp "tmp/deploy/images/bessemer-mb-p4/update.fw.tar.gz" "root@$1:/data/"
-    rmssh "$1" &> /dev/null
+    ssh -i ~/.ssh/formlabs.private root@"$1".local
 }
-
