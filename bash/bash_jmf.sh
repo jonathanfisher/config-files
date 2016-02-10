@@ -38,11 +38,22 @@ fi
 alias mkdir='mkdir -p'
 
 # Colors for ls
-alias ls='ls --color'
+case $(uname) in
+    Linux)
+        alias ls='ls --color';;
+esac
 
 # JMF: Set aliases for clipboard access.
-alias setclip='xclip -selection c'
-alias getclip='xclip -selection clipboard -o'
+case $(uname) in
+    Linux)
+        alias setclip='xclip -selection c'
+        alias getclip='xclip -selection clipboard -o'
+        ;;
+    Darwin)
+        alias setclip='pbcopy'
+        alias getclip='pbpaste'
+        ;;
+esac
 
 # Git commands
 alias gc='git commit -a -m'
