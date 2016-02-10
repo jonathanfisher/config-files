@@ -40,7 +40,11 @@ alias mkdir='mkdir -p'
 # Colors for ls
 case $(uname) in
     Linux)
-        alias ls='ls --color';;
+        alias ls='ls --color'
+        ;;
+    Darwin)
+        alias ls='ls -G'
+        ;;
 esac
 
 # JMF: Set aliases for clipboard access.
