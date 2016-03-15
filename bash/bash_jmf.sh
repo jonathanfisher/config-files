@@ -2,6 +2,8 @@
 # file is probably included from the main ~/.bashrc or ~/.bash_profile files.
 c="$(dirname ${BASH_SOURCE[0]})"
 
+UNAME=$(uname)
+
 if [ -f "$c/colors.sh" ] ; then
 	. "$c/colors.sh"
 fi
@@ -9,7 +11,7 @@ fi
 # Set format for prompt
 # I don't have git completion working on the mac just yet.
 TITLEBAR='\[\e]0;\u: \w\a\]'
-case $(uname) in
+case $UNAME in
     Linux)
         GITPS1='$(__git_ps1)' ;;
     *)
@@ -38,7 +40,7 @@ fi
 alias mkdir='mkdir -p'
 
 # Colors for ls
-case $(uname) in
+case $UNAME in
     Linux)
         alias ls='ls --color'
         ;;
