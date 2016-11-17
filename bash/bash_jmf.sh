@@ -8,6 +8,11 @@ if [ -f "$c/colors.sh" ] ; then
 	. "$c/colors.sh"
 fi
 
+# Tab completion for Mac
+if [ "${UNAME}" = "Darwin" ] && [ -d "$(brew --prefix)/etc/bash_completion.d" ]; then
+    . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
+fi
+
 # Set format for prompt
 # I don't have git completion working on the mac just yet.
 TITLEBAR='\[\e]0;\u: \w\a\]'
