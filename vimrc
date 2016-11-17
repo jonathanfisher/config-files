@@ -128,10 +128,16 @@ highlight Search ctermbg=darkblue ctermfg=white
 set cursorline
 highlight CursorLine ctermbg=NONE ctermfg=NONE cterm=bold
 highlight CursorColumn cterm=NONE ctermbg=darkred ctermfg=white guibg=darkred guifg=white
-noremap <Leader>c :set cursorline! cursorcolumn!<CR>
+"noremap <Leader>c :set cursorline! cursorcolumn!<CR>
 
 " Local replacing of variable names
 nnoremap gr gd[{V%::s/<C-R>///gc<left><left><left>
 " Global replace
 nnoremap gR gD:%s/<C-R>///gc<left><left><left>
 
+if has("unix")
+    let s:uname = substitute(system("uname -s"), "\n", "", "")
+    if s:uname == "Darwin"
+        map yy :w !pbcopy<CR><CR>
+    endif
+endif
