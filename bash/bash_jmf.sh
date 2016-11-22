@@ -8,11 +8,6 @@ if [ -f "$c/colors.sh" ] ; then
 	. "$c/colors.sh"
 fi
 
-# Tab completion for Mac
-if [ "${UNAME}" = "Darwin" ] && [ -d "$(brew --prefix)/etc/bash_completion.d" ]; then
-    . $(brew --prefix)/etc/bash_completion.d/git-completion.bash
-fi
-
 # Set format for prompt
 # I don't have git completion working on the mac just yet.
 TITLEBAR='\[\e]0;\u: \w\a\]'
@@ -29,9 +24,6 @@ fi
 
 PS1='\u@\h:\w'"\[${Blue}\]$GITPS1\[${Color_Off}\]"
 PS1="$TITLEBAR$PS1 $ "
-
-# Used for cross-compiling for Atmel parts.
-alias amake='make ARCH=arm CROSS_COMPILE=arm-none-linux-gnueabi-'
 
 # Set up go path
 export GOPATH=$HOME/code/go
@@ -84,6 +76,10 @@ alias git='hub'
 # Bring in completions for hub
 if [ -f "$c/hub.bash_completion.sh" ]; then
     . "$c/hub.bash_completion.sh"
+fi
+
+if [ -f "$c/git-completion.bash" ]; then
+    . "$c/git-completion.bash"
 fi
 
 ####################################
