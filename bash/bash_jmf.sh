@@ -71,7 +71,10 @@ alias jeeves='ssh jfisher@jeeves.local'
 
 # Shortcut for vim
 alias v='vim'
-alias git='hub'
+if [ -e "/usr/bin/hub" ]
+then
+    alias git='hub'
+fi
 
 # Bring in completions for hub
 if [ -f "$c/hub.bash_completion.sh" ]; then
