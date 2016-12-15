@@ -73,6 +73,7 @@ set backupskip=/tmp/*
 set directory=/tmp
 set writebackup
 set nocp
+set noundofile
 
 " Set the current working directory.
 cd ~
