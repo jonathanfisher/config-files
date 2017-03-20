@@ -42,8 +42,6 @@ set noerrorbells
 set novisualbell
 set t_vb=
 
-" Set folding
-set foldmethod=indent
 " Map the space bar to toggling fold level
 nnoremap <Space> za
 
@@ -141,4 +139,23 @@ if has("unix")
     if s:uname == "Darwin"
         map yy :w !pbcopy<CR><CR>
     endif
+endif
+
+set backup
+set backupdir=/tmp
+set backupskip=/tmp
+set directory=/tmp
+set writebackup
+
+if exists("+undofile")
+  " undofile - This allows you to use undos after exiting and restarting
+  " This, like swap and backup files, uses .vim-undo first, then ~/.vim/undo
+  " :help undo-persistence
+  " This is only present in 7.3+
+  if isdirectory($HOME . '/.vim/undo') == 0
+    :silent !mkdir -p ~/.vim/undo > /dev/null 2>&1
+  endif
+  set undodir=./.vim-undo//
+  set undodir+=~/.vim/undo//
+  set undofile
 endif
