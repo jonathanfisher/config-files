@@ -71,7 +71,7 @@ alias jeeves='ssh jfisher@jeeves.local'
 
 # Shortcut for vim
 alias v='vim'
-if [ -e "/usr/bin/hub" ]
+if which hub 2>&1 > /dev/null
 then
     alias git='hub'
 fi
