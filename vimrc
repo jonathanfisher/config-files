@@ -45,19 +45,6 @@ set t_vb=
 " Map the space bar to toggling fold level
 nnoremap <Space> za
 
-" When creating a new .c file, add a header.
-"autocmd bufnewfile *.c so /home/jfisher/Projects/config-files/c_header.txt
-"autocmd bufnewfile *.c exe "1," . 7 . "g/File Name:.*/s//File Name: " .expand("%")
-"autocmd bufnewfile *.c exe "1," . 7 . "g/Created By:.*/s//Created By: " . g:vimrc_author
-"autocmd bufnewfile *.c exe "1," . 7 . "g/Creation Date:.*/s//Creation Date: " .strftime("%m-%d-%Y")
-"autocmd Bufwritepre,filewritepre *.c execute "normal ma"
-"autocmd Bufwritepre,filewritepre *.c exe "1," . 7 . "g/Last Modified:.*/s/Last Modified:.*/Last Modified: " . strftime("%c")
-"autocmd bufwritepost,filewritepost *.c execute "normal `a"
-
-" When creating a new header file, wrap it with ifdefs
-autocmd bufnewfile *.h
-	\ exe "normal i#pragma once\n" | execute "normal G"
-
 " Use a statusline.
 set laststatus=2
 
@@ -73,11 +60,14 @@ set writebackup
 set nocp
 set noundofile
 
-" Set the current working directory.
-cd ~
-
 " Set auto-change-directory.
-set autochdir
+" set vim to chdir for each file
+if exists('+autochdir')
+    set autochdir
+    autocmd VimEnter * set autochdir
+else
+    autocmd BufEnter * silent! lcd %:p:h:gs/ /\\ /
+endif
 
 " Automatically reload a file that's changed on disk.
 set autoread

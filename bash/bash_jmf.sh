@@ -22,7 +22,7 @@ if [ -f /etc/arch-release ]; then
     GITPS1=''
 fi
 
-PS1='\u@\h:\w'"\[${Blue}\]$GITPS1\[${Color_Off}\]"
+PS1='\u@\h:\w'"\[${Cyan}\]$GITPS1\[${Color_Off}\]"
 PS1="$TITLEBAR$PS1 $ "
 
 # Set up go path
@@ -71,7 +71,7 @@ alias jeeves='ssh jfisher@jeeves.local'
 
 # Shortcut for vim
 alias v='vim'
-if which hub 2>&1 > /dev/null
+if [ -e "/usr/bin/hub" ] || [ -e "/usr/local/bin/hub" ]
 then
     alias git='hub'
 fi
