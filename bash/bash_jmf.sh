@@ -12,14 +12,14 @@ fi
 # I don't have git completion working on the mac just yet.
 TITLEBAR='\[\e]0;\u: \w\a\]'
 case $UNAME in
-    Linux)
-        GITPS1='$(__git_ps1)' ;;
-    *)
-        GITPS1='' ;;
+	Linux)
+		GITPS1='$(__git_ps1)' ;;
+	*)
+		GITPS1='' ;;
 esac
 
 if [ -f /etc/arch-release ]; then
-    GITPS1=''
+	GITPS1=''
 fi
 
 PS1='\u@\h:\w'"\[${Cyan}\]$GITPS1\[${Color_Off}\]"
@@ -29,8 +29,8 @@ PS1="$TITLEBAR$PS1 $ "
 export GOPATH=$HOME/code/go
 
 if [ ! -d "$GOPATH" ]; then
-    # Create the directory
-    mkdir -p $GOPATH
+	# Create the directory
+	mkdir -p $GOPATH
 fi
 
 # Avoid clobbering files
@@ -38,25 +38,26 @@ alias mkdir='mkdir -p'
 
 # Colors for ls
 case $UNAME in
-    Linux)
-        alias ls='ls --color'
-	export LS_COLORS="di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
-        ;;
-    Darwin)
-        alias ls='ls -G'
-        ;;
+	Linux)
+		alias ls='ls --color'
+		export LS_COLORS="di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+		;;
+	Darwin)
+		alias ls='ls -G'
+		export LSCOLORS="gxfxcxdxbxegedabagacad"
+		;;
 esac
 
 # JMF: Set aliases for clipboard access.
 case $(uname) in
-    Linux)
-        alias setclip='xclip -selection c'
-        alias getclip='xclip -selection clipboard -o'
-        ;;
-    Darwin)
-        alias setclip='pbcopy'
-        alias getclip='pbpaste'
-        ;;
+	Linux)
+		alias setclip='xclip -selection c'
+		alias getclip='xclip -selection clipboard -o'
+		;;
+	Darwin)
+		alias setclip='pbcopy'
+		alias getclip='pbpaste'
+		;;
 esac
 
 # Git commands
@@ -74,16 +75,16 @@ alias jeeves='ssh jfisher@jeeves.local'
 alias v='vim'
 if [ -e "/usr/bin/hub" ] || [ -e "/usr/local/bin/hub" ]
 then
-    alias git='hub'
+	alias git='hub'
 fi
 
 # Bring in completions for hub
 if [ -f "$c/hub.bash_completion.sh" ]; then
-    . "$c/hub.bash_completion.sh"
+	. "$c/hub.bash_completion.sh"
 fi
 
 if [ -f "$c/git-completion.bash" ]; then
-    . "$c/git-completion.bash"
+	. "$c/git-completion.bash"
 fi
 
 ####################################
@@ -128,44 +129,44 @@ up() {
 }
 
 rmssh() {
-    if [ -z "$1" ]; then
-        echo "Must supply a host-name or address"
-        return 1
-    fi
+	if [ -z "$1" ]; then
+		echo "Must supply a host-name or address"
+		return 1
+	fi
 
-    if [[ $1 =~ ^[0-9] ]]; then
-        IP="$1"
-        NAME="$(avahi-resolve-address $IP | awk '{print $2}')"
-    else
-        NAME="$1"
-        IP="$(avahi-resolve-host-name $NAME | awk '{print $2}')"
-    fi
+	if [[ $1 =~ ^[0-9] ]]; then
+		IP="$1"
+		NAME="$(avahi-resolve-address $IP | awk '{print $2}')"
+	else
+		NAME="$1"
+		IP="$(avahi-resolve-host-name $NAME | awk '{print $2}')"
+	fi
 
-    echo "Removing $NAME ($IP)"
+	echo "Removing $NAME ($IP)"
 
-    if [ ! -z "$NAME" ]; then
-        ssh-keygen -R "$NAME"
-    fi
+	if [ ! -z "$NAME" ]; then
+		ssh-keygen -R "$NAME"
+	fi
 
-    if [ ! -z "$IP" ]; then
-        ssh-keygen -R "$IP"
-    fi
+	if [ ! -z "$IP" ]; then
+		ssh-keygen -R "$IP"
+	fi
 }
 
 pr() {
-    if [ -z "$1" ]; then
-        echo "Must supply a printer name"
-        return 1
-    fi
+	if [ -z "$1" ]; then
+		echo "Must supply a printer name"
+		return 1
+	fi
 
-    ssh root@"$1".local
+	ssh root@"$1".local
 }
 
 prs() {
-    if [ -z "$1" ]; then
-        echo "Must supply a printer name"
-        return 1
-    fi
+	if [ -z "$1" ]; then
+		echo "Must supply a printer name"
+		return 1
+	fi
 
-    ssh -i ~/.ssh/formlabs.private root@"$1".local
+	ssh -i ~/.ssh/formlabs.private root@"$1".local
 }
