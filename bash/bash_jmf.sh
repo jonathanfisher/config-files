@@ -8,23 +8,6 @@ if [ -f "$c/colors.sh" ] ; then
 	. "$c/colors.sh"
 fi
 
-# Set format for prompt
-# I don't have git completion working on the mac just yet.
-TITLEBAR='\[\e]0;\u: \w\a\]'
-case $UNAME in
-	Linux)
-		GITPS1='$(__git_ps1)' ;;
-	*)
-		GITPS1='' ;;
-esac
-
-if [ -f /etc/arch-release ]; then
-	GITPS1=''
-fi
-
-PS1='\u@\h:\w'"\[${Cyan}\]$GITPS1\[${Color_Off}\]"
-PS1="$TITLEBAR$PS1 $ "
-
 # Set up go path
 export GOPATH=$HOME/code/go
 
@@ -48,8 +31,8 @@ case $UNAME in
 		;;
 esac
 
-# JMF: Set aliases for clipboard access.
-case $(uname) in
+# Set aliases for clipboard access.
+case $UNAME in
 	Linux)
 		alias setclip='xclip -selection c'
 		alias getclip='xclip -selection clipboard -o'
@@ -86,6 +69,28 @@ fi
 if [ -f "$c/git-completion.bash" ]; then
 	. "$c/git-completion.bash"
 fi
+
+# Bring in the git-prompt if needed (e.g. on MacOS)
+if [ "$UNAME" = "Darwin" ]
+then
+	. "$c/git-prompt.sh"
+fi
+
+# Set format for prompt
+TITLEBAR='\[\e]0;\u: \w\a\]'
+case $UNAME in
+	Darwin|Linux)
+		GITPS1='$(__git_ps1)' ;;
+	*)
+		GITPS1='' ;;
+esac
+
+if [ -f /etc/arch-release ]; then
+	GITPS1=''
+fi
+
+PS1='\u@\h:\w'"\[${Cyan}\]$GITPS1\[${Color_Off}\]"
+PS1="$TITLEBAR$PS1 $ "
 
 ####################################
 # Create some useful commands.
