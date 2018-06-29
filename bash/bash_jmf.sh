@@ -16,6 +16,11 @@ if [ ! -d "$GOPATH" ]; then
 	mkdir -p $GOPATH
 fi
 
+if ! which go 2>&1 > /dev/null
+then
+	export PATH=$PATH:/usr/local/go/bin
+fi
+
 # Avoid clobbering files
 alias mkdir='mkdir -p'
 
