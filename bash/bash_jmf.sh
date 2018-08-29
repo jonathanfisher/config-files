@@ -9,7 +9,7 @@ if [ -f "$c/colors.sh" ] ; then
 fi
 
 # Set up go path
-export GOPATH=$HOME/code/go
+export GOPATH=$HOME/go
 
 if [ ! -d "$GOPATH" ]; then
 	# Create the directory
@@ -20,6 +20,8 @@ if ! which go 2>&1 > /dev/null
 then
 	export PATH=$PATH:/usr/local/go/bin
 fi
+
+export PATH=$PATH:/usr/local/go/bin
 
 # Avoid clobbering files
 alias mkdir='mkdir -p'
