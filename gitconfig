@@ -23,25 +23,20 @@
     autosetuprebase = always
 
 [alias]
-	st = status
-	ci = commit
-	br = branch
-	co = checkout
-	df = diff
-	dc = diff --cached
-	lg = log -p
 	gr = log --all --graph --decorate --oneline
-	lbb = "log --pretty=format:'# %ad %H %s' --date=short --first-parent --reverse"
-    preq = pull-request
-    rbc = rebase --continue
+    hash = log --pretty=format:'%H'
+	lbb = log --pretty=format:'# %ad %H %s' --date=short --first-parent --reverse
+	lg = log -p
+    lh = log --pretty=format:'%H' -n 1
     mt = mergetool
     prb = pull --rebase
+    preq = pull-request
+    rbc = rebase --continue
     rhh = reset --hard HEAD
-    sui = submodule update --init --recursive
     ss = submodule sync
+    sui = submodule update --init --recursive
     rb = rebase
-    lh = "log --pretty=format:'%H' -n 1"
-    hash = "log --pretty=format:'%H'"
+    rs = rebase --exec 'git commit --amend --no-edit -n -S'
 
 [merge]
     tool = vimdiff
