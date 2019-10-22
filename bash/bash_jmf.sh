@@ -16,7 +16,7 @@ if [ ! -d "$GOPATH" ]; then
 	mkdir -p $GOPATH
 fi
 
-if ! which go 2>&1 > /dev/null
+if ! which go > /dev/null 2>&1
 then
 	export PATH=$PATH:/usr/local/go/bin
 fi
