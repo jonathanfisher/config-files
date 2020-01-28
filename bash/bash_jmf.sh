@@ -58,9 +58,6 @@ alias gd='git diff'
 alias gb='git branch'
 alias gm='git merge'
 
-# Alias for Jeeves
-alias jeeves='ssh jfisher@jeeves.local'
-
 # Shortcut for vim
 alias v='vim'
 if [ -e "/usr/bin/hub" ] || [ -e "/usr/local/bin/hub" ]
@@ -138,47 +135,4 @@ up() {
 		d=..
 	fi
 	cd $d
-}
-
-rmssh() {
-	if [ -z "$1" ]; then
-		echo "Must supply a host-name or address"
-		return 1
-	fi
-
-	if [[ $1 =~ ^[0-9] ]]; then
-		IP="$1"
-		NAME="$(avahi-resolve-address $IP | awk '{print $2}')"
-	else
-		NAME="$1"
-		IP="$(avahi-resolve-host-name $NAME | awk '{print $2}')"
-	fi
-
-	echo "Removing $NAME ($IP)"
-
-	if [ ! -z "$NAME" ]; then
-		ssh-keygen -R "$NAME"
-	fi
-
-	if [ ! -z "$IP" ]; then
-		ssh-keygen -R "$IP"
-	fi
-}
-
-pr() {
-	if [ -z "$1" ]; then
-		echo "Must supply a printer name"
-		return 1
-	fi
-
-	ssh root@"$1".local
-}
-
-prs() {
-	if [ -z "$1" ]; then
-		echo "Must supply a printer name"
-		return 1
-	fi
-
-	ssh -i ~/.ssh/formlabs.private root@"$1".local
 }
