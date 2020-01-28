@@ -60,7 +60,7 @@ alias gm='git merge'
 
 # Shortcut for vim
 alias v='vim'
-if [ -e "/usr/bin/hub" ] || [ -e "/usr/local/bin/hub" ]
+if which hub 2>&1 > /dev/null
 then
 	alias git='hub'
 fi
