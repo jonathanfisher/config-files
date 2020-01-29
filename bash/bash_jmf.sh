@@ -50,20 +50,8 @@ case $UNAME in
 		;;
 esac
 
-# Git commands
-alias gc='git commit -a -m'
-alias gco='git checkout'
-alias gs='git status'
-alias gd='git diff'
-alias gb='git branch'
-alias gm='git merge'
-
 # Shortcut for vim
 alias v='vim'
-if which hub 2>&1 > /dev/null
-then
-	alias git='hub'
-fi
 
 # Bring in completions for hub
 if [ -f "$c/hub.bash_completion.sh" ]; then
@@ -123,6 +111,8 @@ extract() {
 	fi
 }
 
+# Invoking `up` will move up a directory. It has an optional argument that specifies the
+# number of directories to try to move up.
 up() {
 	local d=""
 	limit=$1
