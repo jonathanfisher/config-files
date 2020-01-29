@@ -136,3 +136,23 @@ up() {
 	fi
 	cd $d
 }
+
+if which hub 2>&1 > /dev/null
+then
+	alias git='hub'
+fi
+
+# This function is used to set the environment variable used by git in the current
+# terminal session. This is used in the case where you have multiple public/private
+# key pairs for different GitHub identities, and want to be able to use the keys
+# when appropriate.
+set-git-key() {
+	if [ $# -eq 1 ]
+	then
+		export GIT_SSH_COMMAND="ssh -i $1 -o 'IdentitiesOnly yes'"
+		echo "GIT_SSH_COMMAND = $GIT_SSH_COMMAND"
+	else
+		unset GIT_SSH_COMMAND
+		echo "Cleared GIT_SSH_COMMAND"
+	fi
+}
