@@ -59,6 +59,11 @@ esac
 # Shortcut for vim
 alias v='vim'
 
+if [ -e "/usr/bin/hub" ] || [ -e "/usr/local/bin/hub" ]
+then
+    alias git='hub'
+fi
+
 # Bring in completions for hub
 if [ -f "$c/hub.bash_completion.sh" ]; then
 	. "$c/hub.bash_completion.sh"
@@ -157,11 +162,6 @@ up() {
 	fi
 	cd $d
 }
-
-if which hub 2>&1 > /dev/null
-then
-	alias git='hub'
-fi
 
 # This function is used to set the environment variable used by git in the current
 # terminal session. This is used in the case where you have multiple public/private
