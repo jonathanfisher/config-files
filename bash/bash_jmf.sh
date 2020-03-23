@@ -64,7 +64,7 @@ fi
 
 # Bring in the git-prompt if needed (e.g. on MacOS)
 case "$UNAME" in
-	Darwin|MINGW*)
+	Darwin|MINGW*|CYGWIN*)
 		. "$c/git-prompt.sh"
 		;;
 esac
