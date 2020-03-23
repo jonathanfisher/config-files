@@ -63,26 +63,20 @@ if [ -f "$c/git-completion.bash" ]; then
 fi
 
 # Bring in the git-prompt if needed (e.g. on MacOS)
-if [ "$UNAME" = "Darwin" ]
-then
-	. "$c/git-prompt.sh"
-fi
-
-# Set format for prompt
-TITLEBAR='\[\e]0;\u: \w\a\]'
-case $UNAME in
-	Darwin|Linux)
-		GITPS1='$(__git_ps1)' ;;
-	*)
-		GITPS1='' ;;
+case "$UNAME" in
+	Darwin|MINGW*)
+		. "$c/git-prompt.sh"
+		;;
 esac
 
-if [ -f /etc/arch-release ]; then
-	GITPS1=''
-fi
-
-PS1='\u@\h:\w'"\[${Cyan}\]$GITPS1\[${Color_Off}\]"
-PS1="$TITLEBAR$PS1 $ "
+# Set format for prompt
+# Note: this is all *very* sensitive to single- and double-quotes.
+# Single quotes preserve the literal value of each character within the quotes (https://www.gnu.org/software/bash/manual/html_node/Single-Quotes.html)
+# Double quotes preserve the literal value of each character within the quotes.... with the exception of
+# '$', '`', '\' and, when history expansion is enabled, '!'. '*' and '@' have special meaning inside of double quotes.
+# (https://www.gnu.org/software/bash/manual/html_node/Double-Quotes.html)
+GITPS1="${Cyan}"'$(unalias git; __git_ps1 " (%s)")'"${Color_Off}"
+export PS1='\[\e]0;Git Bash : \w\007\]\u@\h:\w'"${GITPS1}"' \$ '
 
 ####################################
 # Create some useful commands.
