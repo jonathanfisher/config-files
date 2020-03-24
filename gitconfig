@@ -15,7 +15,7 @@
 	name = Jonathan Fisher
 
 [core]
-	editor = vim
+	editor = code --wait
     autocrlf = input
 
 [branch]
@@ -38,22 +38,26 @@
     rb = rebase
     rs = rebase --exec 'git commit --amend --no-edit -n -S'
 
-[merge]
-    tool = vimdiff
-    conflictstyle = diff3
-
 [hub]
     protocol = git
 
 [rerere]
     enabled = 1
 
-[mergetool]
-    prompt = false
-    keepBackup = false
-
 [pull]
     rebase = true
 
 [push]
 	default = current
+
+[diff]
+    tool = default-difftool
+
+[difftool "default-difftool"]
+    cmd = code --wait --diff $LOCAL $REMOTE
+
+[merge]
+    tool = vscode
+
+[mergetool "vscode"]
+    cmd = code --wait $MERGED
