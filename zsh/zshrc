@@ -1,0 +1,114 @@
+# If we're not running interactively, just bail now
+[ -z "$PS1" ] && return
+
+UNAME=$(uname)
+
+# Set up go path
+export GOPATH=$HOME/go
+
+[ -d "${GOPATH}" ] || mkdir -p ${GOPATH}
+
+# Avoid clobbering files
+alias mkdir='mkdir -p'
+
+case $UNAME in
+	Linux)
+		alias ls='ls --color'
+		export LS_COLORS="di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
+
+        alias setclip='xclip -selection c'
+		alias getclip='xclip -selection clipboard -o'
+		;;
+	Darwin)
+		alias ls='ls -G'
+		export LSCOLORS="gxfxcxdxbxegedabagacad"
+        
+        alias setclip='pbcopy'
+		alias getclip='pbpaste'
+		;;
+    CYGWIN_NT*)
+        ;;
+esac
+
+# Shortcut for vim
+alias v='vim'
+
+if which hub 2>&1 > /dev/null
+then
+	alias git='hub'
+fi
+
+# ctrl-left/right
+bindkey "\e[1;5C" forward-word
+bindkey "\e[1;5D" backward-word
+
+# ctrl-backspace/delete
+bindkey "\C-_" backward-kill-word
+bindkey "\e[3;5~" kill-word
+
+# alt-backspace
+bindkey "\e\d" undo
+
+bindkey "\e[3~" delete-char
+bindkey '\e[H' beginning-of-line
+bindkey '\e[F' end-of-line
+
+export PROMPT='[%m] %~ %# '
+
+####################################
+# Create some useful commands.
+####################################
+
+# Try to extract a given file.
+extract() {
+	if [ -f $1 ] ; then
+		case $1 in
+			*.tar.bz2)	tar xvjf $1	;;
+			*.tar.gz)	tar xvzf $1	;;
+			*.tar.xz)	tar xvf $1	;;
+			*.bz2)		bunzip2 $1	;;
+			*.rar)		unrar x $1	;;
+			*.gz)		gunzip $1	;;
+			*.tar)		tar xvf $1	;;
+			*.tbz2)		tar xvjf $1	;;
+			*.tgz)		tar xvzf $1	;;
+			*.zip)		unzip $1	;;
+			*.Z)		uncompress $1	;;
+			*.7z)		7z x $1		;;
+			*)		echo "Don't know how to extract '$1'..." ;;
+		esac
+	else
+		echo "'$1' is not a valid file!"
+	fi
+}
+
+# Invoking `up` will move up a directory. It has an optional argument that specifies the
+# number of directories to try to move up.
+up() {
+	local d=""
+	limit=$1
+	for ((i=1 ; i <= limit ; i++))
+	do
+		d=$d/..
+	done
+	d=$(echo $d | sed 's/^\///')
+	if [ -z "$d" ]; then
+		d=..
+	fi
+	cd $d
+}
+
+# This function is used to set the environment variable used by git in the current
+# terminal session. This is used in the case where you have multiple public/private
+# key pairs for different GitHub identities, and want to be able to use the keys
+# when appropriate.
+set-git-key() {
+	if [ $# -eq 1 ]
+	then
+		export GIT_SSH_COMMAND="ssh -i $1 -o 'IdentitiesOnly yes'"
+		echo "GIT_SSH_COMMAND = $GIT_SSH_COMMAND"
+	else
+		unset GIT_SSH_COMMAND
+		echo "Cleared GIT_SSH_COMMAND"
+	fi
+}
