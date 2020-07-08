@@ -1,3 +1,6 @@
+# If we're not running interactively, just bail now
+[ -z "$PS1" ] && return
+
 # This is the directory of the current file.  This is important because this
 # file is probably included from the main ~/.bashrc or ~/.bash_profile files.
 c="$(dirname ${BASH_SOURCE[0]})"
@@ -21,7 +24,10 @@ then
 	export PATH=$PATH:/usr/local/go/bin
 fi
 
-export PATH=$PATH:/usr/local/go/bin
+if [ -d "/usr/local/texlive/2020/bin/x86_64-linux" ]
+then
+	export PATH=$PATH:/usr/local/texlive/2020/bin/x86_64-linux
+fi
 
 # Avoid clobbering files
 alias mkdir='mkdir -p'
@@ -75,8 +81,39 @@ esac
 # Double quotes preserve the literal value of each character within the quotes.... with the exception of
 # '$', '`', '\' and, when history expansion is enabled, '!'. '*' and '@' have special meaning inside of double quotes.
 # (https://www.gnu.org/software/bash/manual/html_node/Double-Quotes.html)
-GITPS1="${Cyan}"'$(unalias git; __git_ps1 " (%s)")'"${Color_Off}"
-export PS1='\[\e]0;Git Bash : \w\007\]\u@\h:\w'"${GITPS1}"' \$ '
+# GITPS1="${Cyan}"'$(unalias git; __git_ps1 " (%s)")'"${Color_Off}"
+GITPS1=''
+# export PS1='\[\e]0;Git Bash : \w\007\]\u@\h:\w'"${GITPS1}"' \$ '
+
+# Default Cygwin one, with the newline removed
+# export PS1='\[\e]0;\w\a\]\[\e[32m\]\u@\h \[\e[33m\]\w\[\e[0m\] \$ '
+
+# Default Git Bash for Windows one, with newline removed
+# export PS1='\[\033]0;$TITLEPREFIX:$PWD\007\]\[\033[32m\]\u@\h\[\033[35m\] \[\033[33m\]\w\[\033[36m\]`__git_ps1`\[\033[0m\] $ '
+# export PS1='\[\033]0;$TITLEPREFIX:$PWD\007\]\[\033[32m\]\u@\h\[\033[35m\] \[\033[33m\]\[\w\]\[\e[0m\] $ '
+# export PS1='\[\033]0;$TITLEPREFIX:$PWD\007\]\[\033[32m\]\u@\h\[\033[35m\] \[\033[33m\]\w\[\033[36m\]\[\033[0m\] $ '
+case $(uname -o) in
+	Msys)
+		PS1=''
+		# PS1+='\[\e[36m\]\w\[\e[0m\] \$ ' # Works
+		# PS1+='\[$Cyan\]\w\[$Color_Off\] \$ ' # Works
+		
+		# PS1+=$'\[\033]0;Git Bash:$PWD\007\]'
+		# PS1+='\[\u\]:\[\w\] \$ '
+
+		PS1+='\u:\[$Cyan\]\w\[$Color_Off\] \$ ' # Works
+		export PS1
+		;;
+	Cygwin)
+		PS1=''
+		PS1+=$'\[\033]0;Cygwin:$PWD\007\]'
+		PS1+='\u:\w \$ '
+		export PS1
+		;;
+	*)
+		echo "It's something else!"
+		;;
+esac
 
 ####################################
 # Create some useful commands.

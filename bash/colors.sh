@@ -1,15 +1,15 @@
 # Reset
-Color_Off='\[\e[0m\]'       # Text Reset
+Color_Off=$(tput sgr0)      # Text Reset
 
 # Regular Colors
-Black='\[\e[0;30m\]'        # Black
-Red='\[\e[0;31m\]'          # Red
-Green='\[\e[0;32m\]'        # Green
-Yellow='\[\e[0;33m\]'       # Yellow
-Blue='\[\e[0;34m\]'         # Blue
-Purple='\[\e[0;35m\]'       # Purple
-Cyan='\[\e[0;36m\]'         # Cyan
-White='\[\e[0;37m\]'        # White
+Black=$(tput setaf 0)       # Black
+Red=$(tput setaf 1)         # Red
+Green=$(tput setaf 2)       # Green
+Yellow=$(tput setaf 3)      # Yellow
+Blue=$(tput setaf 4)        # Blue
+Purple=$(tput setaf 5)      # Purple
+Cyan=$(tput setaf 6)        # Cyan
+White=$(tput setaf 7)       # White
 
 # Bold
 BBlack='\[\e[1;30m\]'       # Black
