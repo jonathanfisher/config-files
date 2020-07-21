@@ -22,7 +22,7 @@ case $UNAME in
 	Darwin)
 		alias ls='ls -G'
 		export LSCOLORS="gxfxcxdxbxegedabagacad"
-        
+
         alias setclip='pbcopy'
 		alias getclip='pbpaste'
 		;;
@@ -37,6 +37,8 @@ if which hub 2>&1 > /dev/null
 then
 	alias git='hub'
 fi
+
+setopt HIST_IGNORE_DUPS
 
 # ctrl-left/right
 bindkey "\e[1;5C" forward-word
