@@ -1,6 +1,8 @@
 # If we're not running interactively, just bail now
 [ -z "$PS1" ] && return
 
+setopt no_share_history
+
 UNAME=$(uname)
 
 # Set up go path
@@ -16,22 +18,25 @@ case $UNAME in
 		alias ls='ls --color'
 		export LS_COLORS="di=36:ln=35:so=32:pi=33:ex=31:bd=34;46:cd=34;43:su=30;41:sg=30;46:tw=30;42:ow=30;43"
 
-        alias setclip='xclip -selection c'
+		alias setclip='xclip -selection c'
 		alias getclip='xclip -selection clipboard -o'
 		;;
 	Darwin)
 		alias ls='ls -G'
 		export LSCOLORS="gxfxcxdxbxegedabagacad"
 
-        alias setclip='pbcopy'
+		alias setclip='pbcopy'
 		alias getclip='pbpaste'
 		;;
-    CYGWIN_NT*)
-        ;;
+	CYGWIN_NT*)
+		;;
 esac
 
 # Shortcut for vim
 alias v='vim'
+
+# Shortcut for SSH-ing into remote
+alias jmf='ssh jfisher@162.216.16.66'
 
 if which hub 2>&1 > /dev/null
 then
@@ -114,3 +119,4 @@ set-git-key() {
 		echo "Cleared GIT_SSH_COMMAND"
 	fi
 }
+
